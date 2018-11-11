@@ -61,8 +61,8 @@ module Associatable
     self.assoc_options[name] = HasManyOptions.new(name, self.name, options)
     define_method(name) do
       options = self.class.assoc_options[name]
-      key_val = self.send(options.primary_key)
-      options.model_class.where(options.foreign_key => key_val)
+      foreign_key = self.send(options.primary_key)
+      options.model_class.where(options.foreign_key => foreign_key)
     end
   end
 
